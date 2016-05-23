@@ -1,0 +1,14 @@
+div#contents {
+    width: 100%;
+    height: 100%;
+}
+
+ul.navbar-nav li {
+    text-align: center;
+    border: solid thin;
+    border-color: lightgray;
+}
+
+ul.navbar-nav li:hover {
+    background-color: #ADD8E6;
+}
