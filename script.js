@@ -106,6 +106,7 @@ function showAnalog() {
             },
             complete: spinSecond
         });
+        setHourPosition();
     } catch (err) {
         alert(err);
     }
