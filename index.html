@@ -19,16 +19,17 @@
 </head>
 
 <body>
-    <div id="contents">
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav" id="clocktypes">
-                    <li class="active"><a href="">Analog</a></li>
-                    <li class=""><a href="">Digital</a></li>
-                    <li class=""><a href="">Both</a></li>
-                </ul>
-            </div>
-        </nav>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav" id="clocktypes">
+                <li id="analogTab" class=""><a href="" onclick="tabClick(event);">Analog</a></li>
+                <li id="digitalTab" class=""><a href="" onclick="tabClick(event);">Digital</a></li>
+                <li id="bothTab" class=""><a href="" onclick="tabClick(event);">Both</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="" id="clock-contents"></div>
     </div>
 </body>
 

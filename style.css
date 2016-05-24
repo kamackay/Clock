@@ -12,3 +12,7 @@ ul.navbar-nav li {
 ul.navbar-nav li:hover {
     background-color: #ADD8E6;
 }
+
+div#clock-contents {
+    margin-top: 55px;
+}
