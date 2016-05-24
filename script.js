@@ -169,5 +169,8 @@ function showDigital() {
 }
 
 function showBoth() {
-    try {} catch (err) {}
+    try {
+        showAnalog();
+        showDigital();
+    } catch (err) {}
 }
