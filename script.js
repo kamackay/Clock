@@ -59,10 +59,107 @@ function showAnalog() {
         var minuteHand = $('#keithapps-clockMinute');
         var hourHand = $('#keithapps-clockHour');
         var l = (clockEl.width() - secondHand.width()) / 2;
-        secondHand.css('left', l);
-        minuteHand.css('left', l);
-        hourHand.css('left', l);
-    } catch (err) {}
+        secondHand.load(function () {
+            secondHand.css('left', l - secondHand.width() / 2);
+        });
+        minuteHand.load(function () {
+            minuteHand.css('left', l - minuteHand.width() / 2);
+        });
+        hourHand.load(function () {
+            hourHand.css('left', l - hourHand.width() / 2);
+        });
+        var minuteParent = $("#keithapps-minuteParent");
+        var hours = new Date().getHours();
+        var mins = new Date().getMinutes();
+        var secs = new Date().getSeconds();
+        var minParent = $("#keithapps-minuteParent");
+        var hourParent = $("#keithapps-hourParent");
+        var secondParent = $("#keithapps-secondParent");
+        var hours = new Date().getHours();
+        var mins = new Date().getMinutes();
+        var secs = new Date().getSeconds();
+        $({
+            deg: mins * 6 + secs / 10
+        }).animate({
+            deg: 360
+        }, {
+            duration: 3600000 - (mins * 60000) - (secs * 1000),
+            easing: 'linear',
+            step: function (now) {
+                minParent.css({
+                    transform: 'rotate(' + now + 'deg)'
+                });
+            },
+            complete: spinMinute
+        });
+        $({
+            deg: secs * 6
+        }).animate({
+            deg: 360
+        }, {
+            duration: 60000 - (secs * 1000),
+            easing: 'linear',
+            step: function (now) {
+                secondParent.css({
+                    transform: 'rotate(' + now + 'deg)'
+                });
+            },
+            complete: spinSecond
+        });
+    } catch (err) {
+        alert(err);
+    }
+}
+
+
+function spinSecond() {
+    setHourPosition();
+    var secondParent = $("#keithapps-secondParent");
+    $({
+        deg: 0
+    }).animate({
+        deg: 360
+    }, {
+        duration: 60000,
+        easing: 'linear',
+        step: function (now) {
+            secondParent.css({
+                transform: 'rotate(' + now + 'deg)'
+            });
+        },
+        complete: spinSecond
+    });
+}
+
+
+function spinMinute() {
+    setHourPosition();
+    var minuteParent = $("#keithapps-minuteParent");
+    var date = new Date();
+    var currMin = date.getMinutes() * 6 + date.getSeconds() / 10;
+    $({
+        deg: currMin
+    }).animate({
+        deg: 360
+    }, {
+        duration: 3600000,
+        easing: 'linear',
+        step: function (now) {
+            minuteParent.css({
+                transform: 'rotate(' + now + 'deg)'
+            });
+        },
+        complete: spinMinute
+    });
+}
+
+function setHourPosition() {
+    var hour = new Date().getHours();
+    var hourParent = $("#keithapps-hourParent");
+    var angle = (hour % 12) * 30 + (new Date().getMinutes() / 2);
+    hourParent.css({
+        transform: 'rotate(' + angle + 'deg)'
+    });
 }
 
 function showDigital() {
