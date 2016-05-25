@@ -36,20 +36,22 @@ div.keithapps-tabs div {
     margin: 0px;
     padding: 0px;
     text-align: center;
+    border: lightgray thin solid;
 }
 
 div.keithapps-tabs div:hover {
-    border: thin solid red;
     cursor: pointer;
+    background-color: #ADD8E6;
 }
 
 div.keithapps-tabs div a {
-    padding-top: 5px;
+    font-weight: normal;
+    padding: 10px 15px;
     display: block;
     height: 100%;
     width: 100%;
     position: relative;
-    color: black;
+    color: #777;
 }
 
 div.keithapps-tabs div a:hover {

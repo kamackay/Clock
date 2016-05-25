@@ -25,13 +25,14 @@ $(document).ready(function () {
         $('#bothTab').addClass('active');
         showBoth();
     }
+    removeContextMenu();
 });
 
 function setSizes() {
     try {
         var types = $('#clocktypes').find('div');
         $.each(types, function (x, o) {
-            $(this).css('width', ($(window).width() / types.length) - 10).css('font-size', $(this).height() / 2 + 'px');
+            $(this).css('width', ($(window).width() / types.length) - 2).css('font-size', $(this).height() / 3 + 'px');
         });
     } catch (err) {}
 }
@@ -192,7 +193,7 @@ function showDigital(both = false) {
         var contents = $('#keithapps-digitalClock');
         window.setInterval(function () {
             var time = new Date();
-            var text = padInt(time.getHours() % 12, 2) + ':' + padInt(time.getMinutes(), 2) + ':' + padInt(time.getSeconds(), 2) + ' ' + (time.getHours() > 12 ? 'PM' : 'AM');
+            var text = padInt((time.getHours() - 1 % 12) + 1, 2) + ':' + padInt(time.getMinutes(), 2) + ':' + padInt(time.getSeconds(), 2) + ' ' + (time.getHours() > 12 ? 'PM' : 'AM');
             contents.html(text);
         }, 1);
         var size = function () {
