@@ -189,7 +189,7 @@ function setHourPosition() {
 
 function showDigital(both = false) {
     try {
-        $('#clock-contents').append('<div id="keithapps-digitalClock" style="position: fixed; width: 100%;"></div>');
+        $('#clock-contents').append('<div id="keithapps-digitalClock" style="position: fixed; width: 100%; color: black;"></div>');
         var contents = $('#keithapps-digitalClock');
         window.setInterval(function () {
             var time = new Date();
