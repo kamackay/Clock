@@ -20,7 +20,7 @@ function setType(str) {
                 complete: function () {
                     cont.html('');
                     setTimeout(function () {
-                        showType(str);
+                        //showType(str);
                     }, 200);
                 }
             });
