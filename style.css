@@ -16,3 +16,9 @@ ul.navbar-nav li:hover {
 div#clock-contents {
     margin-top: 55px;
 }
+
+div#keithapps-digitalClock {
+    text-align: center;
+    font-size: 200px;
+    cursor: default;
+}
