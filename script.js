@@ -7,24 +7,41 @@ function getType() {
 
 function setType(str) {
     storeData(dataName, str);
+    $('#' + str + 'Tab').addClass('active');
+    var cont = $('#clock-contents');
+    if (cont.html() !== "") {
+        $.each(cont.find("*"), function (o, n) {
+            $(this).animate({
+                left: $(window).width() * 1.5
+            }, {
+                duration: 800,
+                easing: 'swing',
+                queue: false,
+                complete: function () {
+                    cont.html('');
+                    setTimeout(function () {
+                        showType(str);
+                    }, 200);
+                }
+            });
+        });
+    }
 }
 
 $(window).resize(setSizes);
+
+function showType(str = 'both') {
+    $('#' + str + 'Tab').addClass('active');
+    if (str == 'analog') showAnalog();
+    else if (str == 'digital') showDigital();
+    else showBoth();
+}
 
 $(document).ready(function () {
     $('#contents').css('height', $(window).height());
     setSizes();
     clockType = getType();
-    if (clockType == 'analog') {
-        $('#analogTab').addClass('active');
-        showAnalog();
-    } else if (clockType == 'digital') {
-        $('#digitalTab').addClass('active');
-        showDigital();
-    } else {
-        $('#bothTab').addClass('active');
-        showBoth();
-    }
+    showType(clockType);
     removeContextMenu();
 });
 
@@ -38,7 +55,12 @@ function setSizes() {
 }
 
 function tabClick(e) {
-    setType(e.target.innerHTML.toLowerCase());
+    $.each($('body').find('div.keithapps-tabs div'), function (n, o) {
+        $(this).removeClass('active');
+    });
+    setTimeout(function () {
+        setType(e.target.innerHTML.toLowerCase());
+    }, 20);
 }
 
 function clearClock() {

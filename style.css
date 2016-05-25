@@ -23,6 +23,8 @@ div#keithapps-digitalClock {
     cursor: default;
 }
 
+#keithapps-clock {}
+
 div.keithapps-tabs {
     height: 50px;
     padding: 0px;
@@ -52,6 +54,7 @@ div.keithapps-tabs div a {
     width: 100%;
     position: relative;
     color: #777;
+    cursor: pointer;
 }
 
 div.keithapps-tabs div a:hover {
