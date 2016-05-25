@@ -14,6 +14,7 @@
     <title>Web Clock</title>
     <link rel="stylesheet" href="./css/bootstrap.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/style.css">
     <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/jquery.js"></script>
     <script type="text/javascript" src="script.js"></script>
     <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/script.js"></script>
@@ -22,12 +23,10 @@
 
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav" id="clocktypes">
-                <li id="analogTab" class=""><a href="" onclick="tabClick(event);">Analog</a></li>
-                <li id="digitalTab" class=""><a href="" onclick="tabClick(event);">Digital</a></li>
-                <li id="bothTab" class=""><a href="" onclick="tabClick(event);">Both</a></li>
-            </ul>
+        <div class="keithapps-tabs" id="clocktypes">
+            <div id="analogTab" class=""><a href="" onclick="tabClick(event);">Analog</a></div>
+            <div id="digitalTab" class=""><a href="" onclick="tabClick(event);">Digital</a></div>
+            <div id="bothTab" class=""><a href="" onclick="tabClick(event);">Both</a></div>
         </div>
     </nav>
     <div class="full" id="clock-contents"></div>

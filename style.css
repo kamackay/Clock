@@ -22,3 +22,41 @@ div#keithapps-digitalClock {
     font-size: 200px;
     cursor: default;
 }
+
+div.keithapps-tabs {
+    height: 50px;
+    padding: 0px;
+    margin: 0px;
+}
+
+div.keithapps-tabs div {
+    vertical-align: middle;
+    display: inline-block;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+
+div.keithapps-tabs div:hover {
+    border: thin solid red;
+    cursor: pointer;
+}
+
+div.keithapps-tabs div a {
+    padding-top: 5px;
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    color: black;
+}
+
+div.keithapps-tabs div a:hover {
+    text-decoration: none;
+}
+
+div.keithapps-tabs div.active {
+    border: grey thin solid;
+    background-color: lightgray;
+}

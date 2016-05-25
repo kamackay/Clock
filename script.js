@@ -28,10 +28,12 @@ $(document).ready(function () {
 });
 
 function setSizes() {
-    var types = $('#clocktypes').find('li');
-    $.each(types, function (x, o) {
-        $(this).css('width', $(window).width() / types.length);
-    });
+    try {
+        var types = $('#clocktypes').find('div');
+        $.each(types, function (x, o) {
+            $(this).css('width', ($(window).width() / types.length) - 10).css('font-size', $(this).height() / 2 + 'px');
+        });
+    } catch (err) {}
 }
 
 function tabClick(e) {
@@ -64,13 +66,13 @@ function showAnalog(both = false) {
             hourHand.css('left', l - hourHand.width() / 2);
         });
         var onSize = function () {
-            var size = $(window).height() * .85;
+            var size = Math.min($(window).width(), $(window).height()) * .85;
             if (both) size /= 1.5;
             clockEl.css('width', size);
             clockEl.css('height', size);
             clockEl.css('top', 75);
             clockEl.css('left', ($(window).width() - size) / 2);
-            var l = (clockEl.width() - secondHand.width()) / 2;
+            var l = (clockEl.width()) / 2;
             var secondF = function () {
                     secondHand.css('left', l - secondHand.width() / 2);
                 },
