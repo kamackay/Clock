@@ -32,6 +32,7 @@ function setType(str) {
 $(window).resize(setSizes);
 
 function showType(str = 'both') {
+    str = str || 'both';
     $('#' + str + 'Tab').addClass('active');
     if (str == 'analog') {
         showAnalog();
@@ -257,9 +258,7 @@ function showBoth() {
 }
 
 $(document).ready(function () {
-    $('html').find('*').on('swipeleft', function () {
-        alert('swipeleft');
-    });
+    if (isIE()) alert('IE');
 });
 
 function showDateToggle(e) {
@@ -273,7 +272,4 @@ function showDateToggle(e) {
             content: 'Hide Date'
         });
     }
-    setTimeout(function () {
-
-    }, 10);
 }
