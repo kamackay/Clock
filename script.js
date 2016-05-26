@@ -20,7 +20,7 @@ function setType(str) {
                 complete: function () {
                     cont.html('');
                     setTimeout(function () {
-                        //showType(str);
+                        showType(str);
                     }, 200);
                 }
             });
@@ -69,12 +69,14 @@ function clearClock() {
 
 function showAnalog(both = false) {
     try {
-        $('#clock-contents').append('<div id="keithapps-clock" style="position: fixed;">' +
+        $('#clock-contents').html('<div id="keithapps-clock" style="position: fixed;">' +
             '<img id="keithapps-clockImg" style="position: absolute; height: 100%;" src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/clock-circle2N.png" />' + '</div>');
         var clockEl = $("#keithapps-clock");
+        clockEl.fadeOut(0);
+        if ($('#keithapps-secondParent')) $('#keithapps-secondParent').remove();
         clockEl.append('<div id="keithapps-secondParent" style="height: 100%; width: 100%; position: absolute;">' + '<img id="keithapps-clockSecond" src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/clock-hand2.png" style="position: absolute; height: 50%; top: 5px;" />' + '</div>');
         clockEl.append('<div id="keithapps-minuteParent" style="height: 100%; width: 100%; position: absolute; ">' + '<img id="keithapps-clockMinute" src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/clock-hand2.png" style="position: absolute; height: 50%; padding-top: 10%; top: 5px; z-index: 0;" />' + '</div>');
-        clockEl.append('<div id="keithapps-hourParent" style="height: 100%; width: 100%; position: absolute; ">' + '<img id="keithapps-clockHour" src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/clock-handRed2.png" style="position: absolute; height: 50%; padding-top: 18%; top: 5px; " />' + '</div>');
+        clockEl.append('<div id="keithapps-hourParent" style="height: 100%; width: 100%; position: absolute; z-index: 100">' + '<img id="keithapps-clockHour" src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/clock-handRed2.png" style="position: absolute; height: 50%; padding-top: 18%; top: 5px; " />' + '</div>');
         var secondHand = $('#keithapps-clockSecond');
         var minuteHand = $('#keithapps-clockMinute');
         var hourHand = $('#keithapps-clockHour');
@@ -153,6 +155,7 @@ function showAnalog(both = false) {
             complete: spinSecond
         });
         setHourPosition();
+        clockEl.fadeIn(2000);
     } catch (err) {
         alert(err);
     }
@@ -213,6 +216,7 @@ function showDigital(both = false) {
     try {
         $('#clock-contents').append('<div id="keithapps-digitalClock" style="position: fixed; width: 100%;color:black;"></div>');
         var contents = $('#keithapps-digitalClock');
+        contents.fadeOut(0);
         window.setInterval(function () {
             var time = new Date();
             var text = ((time.getHours() - 1) % 12) + 1 + ':' + padInt(time.getMinutes(), 2) + ':' + padInt(time.getSeconds(), 2) + ' ' + (time.getHours() > 12 ? 'PM' : 'AM');
@@ -225,6 +229,7 @@ function showDigital(both = false) {
         };
         size();
         $(window).resize(size);
+        contents.fadeIn(2000);
     } catch (err) {
         alert(err);
     }
