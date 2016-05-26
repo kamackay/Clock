@@ -33,8 +33,10 @@ $(window).resize(setSizes);
 
 function showType(str = 'both') {
     $('#' + str + 'Tab').addClass('active');
-    if (str == 'analog') showAnalog();
-    else if (str == 'digital') showDigital();
+    if (str == 'analog') {
+        showAnalog();
+        $('showDate').fadeOut('slow')
+    } else if (str == 'digital') showDigital();
     else showBoth();
 }
 
@@ -50,7 +52,7 @@ function setSizes() {
     try {
         var types = $('#clocktypes').find('div');
         $.each(types, function (x, o) {
-            $(this).css('width', ($(window).width() / types.length) - 2).css('font-size', $(this).height() / 3 + 'px');
+            $(this).css('width', ($(window).width() / types.length)).css('font-size', $(this).height() / 3 + 'px');
         });
     } catch (err) {}
 }
@@ -96,7 +98,7 @@ function showAnalog(both = false) {
             if (both) size /= 1.5;
             clockEl.css('width', size);
             clockEl.css('height', size);
-            clockEl.css('top', 75);
+            clockEl.css('top', (($(window).width() < ($(window).height() / 1.5)) ? $(window).height() * .2 : 75));
             clockEl.css('left', ($(window).width() - size) / 2);
             var l = (clockEl.width()) / 2;
             var secondF = function () {
@@ -259,3 +261,19 @@ $(document).ready(function () {
         alert('swipeleft');
     });
 });
+
+function showDateToggle(e) {
+    var showDate = $('#showDate');
+    if (showDate.find('input').first().is(':checked')) {
+        $.snackbar({
+            content: 'Show Date'
+        });
+    } else {
+        $.snackbar({
+            content: 'Hide Date'
+        });
+    }
+    setTimeout(function () {
+
+    }, 10);
+}

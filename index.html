@@ -12,16 +12,23 @@
     <!---->
     <title>Web Clock</title>
     <link rel="stylesheet" href="./css/bootstrap.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/material.css">
+    <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/ripples.css">
     <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/style.css">
+    <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/ripples.css">
+    <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/snackbar.css">
+    <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/jquery.js"></script>
+    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/bootstrap.js"></script>
+    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/material.js"></script>
+    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/snackbar.js"></script>
+    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/ripples.js"></script>
     <script type="text/javascript" src="script.js"></script>
     <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/script.js"></script>
-    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/bootstrap.js"></script>
 </head>
 
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="keithapps-tabs" id="clocktypes" style="font-size: 0px;">
             <div id="analogTab" class="unselectable"><a onclick="tabClick(event);">Analog</a></div>
             <div id="digitalTab" class="unselectable"><a onclick="tabClick(event);">Digital</a></div>
@@ -29,6 +36,11 @@
         </div>
     </nav>
     <div class="full unselectable" id="clock-contents"></div>
+    <span class="togglebutton" id="showDate">
+        <label>
+            <input type="checkbox" onclick="showDateToggle();" checked><span class="toggle"></span> Show Date
+    </label>
+    </span>
 </body>
 
 </html>

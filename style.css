@@ -39,6 +39,8 @@ div.keithapps-tabs div {
     padding: 0px;
     text-align: center;
     border: lightgray thin solid;
+    color: black;
+    background-color: lightgray;
 }
 
 div.keithapps-tabs div:hover {
@@ -53,7 +55,7 @@ div.keithapps-tabs div a {
     height: 100%;
     width: 100%;
     position: relative;
-    color: #777;
+    color: #666;
     cursor: pointer;
 }
 
@@ -63,7 +65,12 @@ div.keithapps-tabs div a:hover {
 
 div.keithapps-tabs div.active {
     border: grey thin solid;
-    background-color: lightgray;
+    color: white;
+    background-color: transparent;
+}
+
+div.keithapps-tabs div.active a {
+    color: white;
 }
 
 .keithapps-clockNum {
@@ -73,4 +80,15 @@ div.keithapps-tabs div.active {
     padding-top: 0px;
     margin-top: 0px;
     cursor: default;
+}
+
+#showDate {
+    position: fixed;
+    top: 60px;
+    left: 2%;
+}
+
+.togglebutton label {
+    opacity: 1;
+    color: rgba(0, 0, 0, .5);
 }
