@@ -6,6 +6,7 @@ function getType() {
 }
 
 function setType(str) {
+    clockType = str;
     storeData(dataName, str);
     $('#' + str + 'Tab').addClass('active');
     var cont = $('#clock-contents');
@@ -252,3 +253,9 @@ function showBoth() {
         $('#keithapps-digitalClock').css('top', '80%;');
     } catch (err) {}
 }
+
+$(document).ready(function () {
+    $('html').find('*').on('swipeleft', function () {
+        alert('swipeleft');
+    });
+});

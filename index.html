@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Keith MacKay">
     <meta name="description" content="Keith MacKay's Webpage-based Resume">
-    <meta name="keywords" content="Keith MacKay, Interactive Resume, Web developer, Interactive CV, Resume, CV, NCSU, Software Engineer">
     <!---->
     <link rel="icon" href="./favicon.ico">
     <!---->
@@ -24,12 +23,12 @@
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="keithapps-tabs" id="clocktypes" style="font-size: 0px;">
-            <div id="analogTab" class=""><a onclick="tabClick(event);">Analog</a></div>
-            <div id="digitalTab" class=""><a onclick="tabClick(event);">Digital</a></div>
-            <div id="bothTab" class=""><a onclick="tabClick(event);">Both</a></div>
+            <div id="analogTab" class="unselectable"><a onclick="tabClick(event);">Analog</a></div>
+            <div id="digitalTab" class="unselectable"><a onclick="tabClick(event);">Digital</a></div>
+            <div id="bothTab" class="unselectable"><a onclick="tabClick(event);">Both</a></div>
         </div>
     </nav>
-    <div class="full" id="clock-contents"></div>
+    <div class="full unselectable" id="clock-contents"></div>
 </body>
 
 </html>
