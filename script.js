@@ -1,5 +1,6 @@
 const dataName = 'clocktype';
 var clockType = '';
+var showDate = false;
 
 function getType() {
     return getData(dataName);
@@ -36,15 +37,24 @@ function showType(str = 'both') {
     $('#' + str + 'Tab').addClass('active');
     if (str == 'analog') {
         showAnalog();
-        $('showDate').fadeOut('slow')
-    } else if (str == 'digital') showDigital();
-    else showBoth();
+        $('#showDate').fadeOut('slow');
+    } else {
+        $('#showDate').fadeIn('slow');
+        if (str == 'digital') showDigital();
+        else showBoth();
+    }
 }
 
 $(document).ready(function () {
     $('#contents').css('height', $(window).height());
     setSizes();
     clockType = getType();
+    var data = getData('showDate');
+    showDate = (data == true || data == 'true');
+    if (!showDate) {
+        $('#showDateIn').prop('checked', false);
+    }
+    if (clockType === 'analog') $('#showDate').fadeOut(0);
     showType(clockType);
     removeContextMenu();
 });
@@ -218,26 +228,30 @@ function setHourPosition() {
 
 function showDigital(both = false) {
     try {
-        $('#clock-contents').append('<div id="keithapps-digitalClock" style="position: fixed; width: 100%;color:black;"></div>');
+        if ($('#keithapps-digitalClock').length == 0)
+            $('#clock-contents').append('<div id="keithapps-digitalClock" style="position: fixed; width: 100%;color:black;"></div>');
         var contents = $('#keithapps-digitalClock');
-        contents.fadeOut(0);
         window.setInterval(function () {
             var time = new Date();
             var text = ((time.getHours() - 1) % 12) + 1 + ':' + padInt(time.getMinutes(), 2) + ':' + padInt(time.getSeconds(), 2) + ' ' + (time.getHours() > 12 ? 'PM' : 'AM');
+            if (showDate) text += '<br>' + getDayOfWeek(time) + ', ' + getMonthName(time) + ' ' + getDayOfMonth(time), ', ' + time.getFullYear();
             contents.html(text);
         }, 1);
-        var size = function () {
-            contents.css('font-size', ($(window).width() / 7) + 'px');
-            if (both) contents.css('padding-top', $(window).height() * .6);
-            else contents.css('top', '35%');
-        };
-        size();
-        $(window).resize(size);
-        contents.fadeIn(2000);
+        resizeDigital();
+        $(window).resize(resizeDigital);
     } catch (err) {
         alert(err);
     }
 }
+
+function resizeDigital() {
+    try {
+        var contents = $('#keithapps-digitalClock');
+        contents.css('font-size', ((showDate) ? $(window).width() / 14 : $(window).width() / 7) + 'px');
+        if (clockType == 'both') contents.css('padding-top', $(window).height() * .6);
+        else contents.css('top', '35%');
+    } catch (err) {}
+};
 
 function smallSize() {
     return Math.min($(window).height(), $(window).width());
@@ -257,19 +271,23 @@ function showBoth() {
     } catch (err) {}
 }
 
-$(document).ready(function () {
-    if (isIE()) alert('IE');
-});
+$(document).ready(function () {});
 
 function showDateToggle(e) {
-    var showDate = $('#showDate');
-    if (showDate.find('input').first().is(':checked')) {
+    var showDateEl = $('#showDate');
+    if (showDateEl.find('input').first().is(':checked')) {
         $.snackbar({
             content: 'Show Date'
         });
+        showDate = true;
+        storeData('showDate', true);
+        resizeDigital();
     } else {
         $.snackbar({
             content: 'Hide Date'
         });
+        showDate = false;
+        storeData('showDate', false);
+        resizeDigital();
     }
 }
