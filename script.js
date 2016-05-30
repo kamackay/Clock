@@ -27,7 +27,7 @@ function setType(str) {
                 }
             });
         });
-    }
+    } else showType(str);
 }
 
 $(window).resize(setSizes);
