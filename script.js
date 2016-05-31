@@ -234,7 +234,7 @@ function showDigital(both = false) {
         window.setInterval(function () {
             var time = new Date();
             var text = ((time.getHours() - 1) % 12) + 1 + ':' + padInt(time.getMinutes(), 2) + ':' + padInt(time.getSeconds(), 2) + ' ' + (time.getHours() > 12 ? 'PM' : 'AM');
-            if (showDate) text += '<br>' + getDayOfWeek(time) + ', ' + getMonthName(time) + ' ' + getDayOfMonth(time), ', ' + time.getFullYear();
+            if (showDate) text += '<br>' + getDayOfWeek(time) + ', ' + getMonthName(time) + ' ' + getDayOfMonth(time) + ', ' + time.getFullYear();
             contents.html(text);
         }, 1);
         resizeDigital();
@@ -248,8 +248,7 @@ function resizeDigital() {
     try {
         var contents = $('#keithapps-digitalClock');
         contents.css('font-size', ((showDate) ? $(window).width() / 14 : $(window).width() / 7) + 'px');
-        if (clockType == 'both') contents.css('padding-top', $(window).height() * .6);
-        else contents.css('top', '35%');
+        if (clockType !== 'both') contents.css('top', '35%');
     } catch (err) {}
 };
 
@@ -267,7 +266,12 @@ function showBoth() {
     try {
         showAnalog(true);
         showDigital(true);
-        $('#keithapps-digitalClock').css('top', '80%;');
+        var digitHeight = function () {
+            var digit = $('#keithapps-digitalClock');
+            digit.css('top', $(window).height() - (digit.height() * 1.1));
+        };
+        $(window).resize(digitHeight);
+        setTimeout(digitHeight, 10);
     } catch (err) {}
 }
 
